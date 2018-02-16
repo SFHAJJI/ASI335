@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="inc/acceuil.css">
 </head>
 <body>
+
 <p class="info">${ message }</p>
 
 <div>
@@ -19,8 +20,8 @@
       <input type="text" placeholder="Enter Username" name="identifiant" id="identifiant" required>
 
       <label for="pwd"><b>Mot de passe</b></label>
-      <input type="text" placeholder="Enter Password" name="pwd" id="pwd" required>
-        
+      <input type="password" placeholder="Enter Password" name="pwd" id="pwd" required>
+
       <button type="submit">Connecter</button>
       <!--<label>
         <input type="checkbox" checked="checked" name="remember"> Remember me

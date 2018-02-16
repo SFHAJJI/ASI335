@@ -11,7 +11,7 @@ public class Utilisateur {
     private String reponse;
     private String email;
     private boolean googleAuth;
-    
+    private String secret;
     public void setIdentifiant( String identifiant ) {
         this.identifiant = identifiant;
     }
@@ -19,7 +19,13 @@ public class Utilisateur {
     public String getIdentifiant() {
         return identifiant;
     }
+    public String getSecret() {
+        return secret;
+    }
 
+    public void setSecret(String secret ) {
+        this.secret=secret;
+    }
     public void setNom( String nom ) {
         this.nom = nom;
     }

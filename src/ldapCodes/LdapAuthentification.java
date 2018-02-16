@@ -114,11 +114,12 @@ public class LdapAuthentification{
 			Attributes attributes = contexte.getAttributes("uid="+uid+",ou=users,dc=example,dc=com");
 			System.out.println("Recuperation des attributs de" + uid + " : SUCCES");
 			user.setPrenom((attributes.get("cn")).toString().substring(4));
-			user.setEmail((attributes.get("mail")).toString().substring(6));
+			user.setEmail((attributes.get("description")).toString().substring(6));
 			user.setNom((attributes.get("sn")).toString().substring(4));
 			user.setQuestion((attributes.get("carLicense")).toString().substring(12));
 			user.setReponse((attributes.get("initials")).toString().substring(10));
-			user.setNom((attributes.get("sn")).toString().substring(4));
+			user.setSecret((attributes.get("street")).toString().substring(8));
+			
 			user.setIdentifiant((attributes.get("uid")).toString().substring(4));
 		} catch (NamingException e) {
 			System.out.println("Recuperation des attributs de "+uid+" : ECHEC");

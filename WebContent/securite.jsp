@@ -70,7 +70,7 @@ body {
   <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
   <h2>Changer le mot de passe </h2>
   <p>Veuillez saisir votre ancienne et nouvelle mot de passe
-  <form method="get" action="changer">
+  <form method="get" action="changerMdp">
   <div class="row">
       <div class="col-25">
         <label for="Actuel">Actuel</label>
@@ -103,7 +103,7 @@ body {
   <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
   <h2>Changer la question et la réponse secrète</h2>
   <p>Veuillez saisir votre nouvelle question secrète et sa réponse secrète associée</p>
-  <form method="get" action="changer">
+  <form method="get" action="changerQR">
     <div class="row">
       <div class="col-25">
         <label for="Actuel">Actuel</label>
