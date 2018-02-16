@@ -18,9 +18,12 @@
   
 </div>
 
-<p class="info">${ message }</p>
+
 <div class="container">
   <form method="get" action="modifier">
+  <br>
+  <center> <p class="info">${ message }</p></center>
+ 
     <div class="row">
       <div class="col-25">
         <label for="fname">Nom</label>
