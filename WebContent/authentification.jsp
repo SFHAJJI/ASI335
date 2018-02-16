@@ -9,7 +9,7 @@
 
 <div>
   
-  <form method="post" class="modal-content animate" action="authentification">
+  <form method="post" class="modal-content" action="authentification">
     <div class="imgcontainer">
       <img src="image/img_avatar.png" alt="Avatar" class="avatar">
     </div>
@@ -22,9 +22,9 @@
       <input type="text" placeholder="Enter Password" name="pwd" id="pwd" required>
         
       <button type="submit">Connecter</button>
-      <label>
+      <!--<label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
+      </label>-->
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
