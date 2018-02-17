@@ -101,9 +101,7 @@ public class Authentification extends HttpServlet {
 		}
         }
 		
-  // Emna
-       // GoogleAuthenticator gAuth = new GoogleAuthenticator();
-        //final GoogleAuthenticatorKey key = gAuth.createCredentials();
+ 
 
     }
 }

@@ -17,10 +17,10 @@
 
     <div class="container">
       <label for="identifiant"><b>Identifiant</b></label>
-      <input type="text" placeholder="Enter Username" name="identifiant" id="identifiant" required>
+      <input type="text" placeholder="Entrer votre identifiant" name="identifiant" id="identifiant" required>
 
       <label for="pwd"><b>Mot de passe</b></label>
-      <input type="password" placeholder="Enter Password" name="pwd" id="pwd" required>
+      <input type="password" placeholder="Entrer motde passe" name="pwd" id="pwd" required>
 
       <button type="submit">Connecter</button>
       <!--<label>
@@ -29,11 +29,10 @@
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <span class="psw">Forgot <a href="pwdReinitialisation.jsp">password?</a></span>
+      <span class="psw"> <a href="pwdReinitialisation.jsp">mot de passe oublié ?</a></span>
     </div>
   </form>
 </div>
-
 
 </body>
 </html>

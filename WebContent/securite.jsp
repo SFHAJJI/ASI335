@@ -50,8 +50,8 @@ body {
 <body>
 
 <div style="text-align:center">
-  <h2>Expanding Grid</h2>
-  <p>Click on the boxes below:</p>
+  <h2>Changer les paramètres de sécurité</h2>
+
 </div>
 
 <!-- Three columns -->
@@ -70,13 +70,13 @@ body {
   <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
   <h2>Changer le mot de passe </h2>
   <p>Veuillez saisir votre ancienne et nouvelle mot de passe
-  <form method="get" action="changerMdp">
+  <form method="get" action="changerMdp" >
   <div class="row">
       <div class="col-25">
         <label for="Actuel">Actuel</label>
       </div>
       <div class="col-75">
-        <input type="text" id="Actuel" name="Actuel" placeholder="ancienne mot de passe" >
+        <input type="text" id="Actuel" name="Actuel" placeholder="ancienne mot de passe" required>
       </div>
     </div>
     <div class="row">
@@ -84,7 +84,7 @@ body {
         <label for="Nouveau">Nouveau</label>
       </div>
       <div class="col-75">
-        <input type="text" id="Nouveau" name="Nouveau" placeholder="Nouvelle mot de passe" >
+        <input type="text" id="Nouveau" name="Nouveau" placeholder="Nouvelle mot de passe" required>
       </div>
     </div>
      <div class="row">
@@ -92,7 +92,7 @@ body {
         <label for="Confirmer">Confirmer</label>
       </div>
       <div class="col-75">
-        <input type="text" id="Confirmer" name="Confirmer" placeholder="confirmer le nouveau mot de passe" >
+        <input type="text" id="Confirmer" name="Confirmer" placeholder="confirmer le nouveau mot de passe" onblur="validatePassword()" required>
       </div>
     </div>
     <input type="submit" value="Valider"  />
@@ -103,13 +103,13 @@ body {
   <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
   <h2>Changer la question et la réponse secrète</h2>
   <p>Veuillez saisir votre nouvelle question secrète et sa réponse secrète associée</p>
-  <form method="get" action="changerQR">
+  <form method="get" action="changerQuRe" >
     <div class="row">
       <div class="col-25">
         <label for="Actuel">Actuel</label>
       </div>
       <div class="col-75">
-        <input type="text" id="Actuel" name="Actuel" placeholder="mot de passe">
+        <input type="text" id="Actuel" name="Actuel" placeholder="mot de passe" required>
       </div>
     </div>.
    <div class="row">
@@ -117,7 +117,7 @@ body {
         <label for="Question">Question secrète</label>
       </div>
       <div class="col-75">
-        <input type="text" id="Question" name="Question" placeholder="nouvelle question secrète">
+        <input type="text" id="Question" name="Question" placeholder="nouvelle question secrète" required>
       </div>
     </div>
     <div class="row">
@@ -125,7 +125,7 @@ body {
         <label for="Réponse">Réponse secrète</label>
       </div>
       <div class="col-75">
-        <input type="text" id="Réponse" name="Réponse" placeholder="nouvelle réponse secrète">
+        <input type="text" id="Réponse" name="Réponse" placeholder="nouvelle réponse secrète" 	 required>
       </div>
     </div>
     <input type="submit" value="Valider"  />
@@ -134,6 +134,24 @@ body {
 
 
 
+<script>
+function validatePassword(){
+var password = document.getElementById("Nouveau")
+, confirm_password = document.getElementById("Confirmer");
+
+
+if(password.value != confirm_password.value) {
+  confirm_password.setCustomValidity("Les mots de passe ne sont pas identiques");
+
+} else {
+  confirm_password.setCustomValidity('');
+  
+}
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+</script>
 <script>
 function openTab(tabName) {
   var i, x;

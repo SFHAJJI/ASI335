@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ChangerMdp extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nom = request.getParameter( "Actuel" );
-		String id = request.getParameter( "Nouveau" );
-        String motDePasse = request.getParameter( "Actuel" );
+		String Actuel = request.getParameter( "Actuel" );
+		String Nouveau = request.getParameter( "Nouveau" );
+        String Confirmer = request.getParameter( "Confirmer" );
       
 		
 	

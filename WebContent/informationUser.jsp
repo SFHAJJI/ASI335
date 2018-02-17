@@ -14,7 +14,7 @@
 <body>
 <div class="navbar">
   <a href="informationUser.jsp">Acceuil</a>
-  <a href="securite.jpg">Sécurité</a>
+  <a href="securite.jsg">Sécurité</a>
   
 </div>
 
