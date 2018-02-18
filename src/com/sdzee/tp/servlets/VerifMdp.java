@@ -24,29 +24,30 @@ public class VerifMdp extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String page = request.getParameter( "page" );
-		  HttpSession session = request.getSession(true); 
+		  HttpSession session = request.getSession(); 
 		  String id = (String) session.getAttribute("id");
+		  System.out.println("id is: "+id);
 		  String Actuel = request.getParameter( "Actuel" );
 		//  DirContext contexte = LdapAuthentification.user_connect(id, Actuel);
+
 		if(page.equals("0")) {
-		
 		String Nouveau = request.getParameter( "Nouveau" );
 		
 		String message;
 		
-		  
-		 // session en cours 
-		Utilisateur utilisateur=(Utilisateur)  session.getAttribute("Utilisateur");
-		//try {
+
+		Utilisateur utilisateur=(Utilisateur)session.getAttribute("utilisateur");
+
+			System.out.println("le password est"+ utilisateur.getPwd());
 			
-			
-    	//	utilisateur = LdapAuthentification.get_attributes(id,contexte);
+    	
     		
 		LdapShaPasswordEncoder isValid= new LdapShaPasswordEncoder() ; 
 	      
-	      if( isValid.isPasswordValid(utilisateur.getPwd(), Nouveau, null)) {
+	      if( isValid.isPasswordValid(utilisateur.getPwd(), Actuel, null)) {
     		request.setAttribute( "Nouveau",Nouveau);
-    		this.getServletContext().getRequestDispatcher( "/changerMdp" ).forward( request, response );
+    		System.out.println("etape 2 \n");
+    		this.getServletContext().getRequestDispatcher( "/ChangerMdp.java" ).forward( request, response );
         
 		}else {
 			message = "Votre mot de passe est incorrect.";

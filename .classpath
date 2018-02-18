@@ -23,5 +23,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Alaeddine/Desktop/spring-security-core-3.0.3.RELEASE.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

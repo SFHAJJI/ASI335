@@ -120,7 +120,10 @@ public class LdapAuthentification{
 			user.setReponse((attributes.get("initials")).toString().substring(10));
 			user.setSecret((attributes.get("street")).toString().substring(8));
 			user.setIdentifiant((attributes.get("uid")).toString().substring(4));
-			user.setPwd((attributes.get("userPassword")).toString().substring(14));
+			Attribute userPassword = attributes.get("userPassword");
+		 	String pwd = new String((byte[]) userPassword.get());
+		 	System.out.println(pwd);
+		 	user.setPwd(pwd);
 		} catch (NamingException e) {
 			System.out.println("Recuperation des attributs de "+uid+" : ECHEC");
 			

@@ -77,13 +77,13 @@ body {
   <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
   <h2>Changer le mot de passe </h2>
   <p>Veuillez saisir votre ancienne et nouvelle mot de passe
-  <form method="get" action="VerifMdp" >
+  <form method="get" action="ChangerMdp" >
   <div class="row">
       <div class="col-25">
         <label for="Actuel">Actuel</label>
       </div>
       <div class="col-75">
-        <input type="password" id="Actuel" name="Actuel" placeholder="ancienne mot de passe" required>
+        <input type="password" id="Actuel" name="Actuel" placeholder="ancien mot de passe" required>
       </div>
     </div>
     <div class="row">
@@ -91,7 +91,7 @@ body {
         <label for="Nouveau">Nouveau</label>
       </div>
       <div class="col-75">
-        <input type="password" placeholder="Nouvelle mot de passe" name="Nouveau" id="Nouveau"  required>
+        <input type="password" placeholder="Nouveau mot de passe" name="Nouveau" id="Nouveau"  required>
       </div>
     </div>
      <div class="row">
@@ -111,7 +111,7 @@ body {
   <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
   <h2>Changer la question et la réponse secrète</h2>
   <p>Veuillez saisir votre nouvelle question secrète et sa réponse secrète associée</p>
-  <form method="get" action="VerifMdp" >
+  <form method="get" action="changerQuRe" >
     <div class="row">
       <div class="col-25">
         <label for="Actuel">Actuel</label>

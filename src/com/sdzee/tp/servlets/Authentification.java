@@ -34,7 +34,7 @@ public class Authentification extends HttpServlet {
         String motDePasse = request.getParameter( "pwd" );
       
     	
-    	
+    	System.out.println("id: "+id+" mdp: "+motDePasse);
 
        
         
@@ -80,15 +80,15 @@ public class Authentification extends HttpServlet {
         	}
         
     
-        }catch(java.lang.NullPointerException e) {
+    }catch(java.lang.NullPointerException e) {
 
-        	message = "authentification échouée";
-        	/* Ajout du message à l'objet requête */
-            request.setAttribute( "message", message );
-        	this.getServletContext().getRequestDispatcher( "/authentification.jsp" ).forward( request, response );
-        	
-		}
-        
+    	message = "authentification échouée";
+    	/* Ajout du message à l'objet requête */
+        request.setAttribute( "message", message );
+    	this.getServletContext().getRequestDispatcher( "/authentification.jsp" ).forward( request, response );
+    	
+	}
+    
 		
  
 
