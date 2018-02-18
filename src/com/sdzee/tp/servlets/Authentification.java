@@ -41,11 +41,7 @@ public class Authentification extends HttpServlet {
         
     	
         String message;
-        if ( id.trim().isEmpty() || motDePasse.trim().isEmpty() ) {
-            message = "Vous n'avez pas rempli tous les champs obligatoires. ";
-            this.getServletContext().getRequestDispatcher( "/authentification.jsp" ).forward( request, response );
-           
-        } else {
+    
             
         
         try{
@@ -54,22 +50,15 @@ public class Authentification extends HttpServlet {
         	DirContext contexte = LdapAuthentification.user_connect(id, motDePasse);
             HttpSession session = request.getSession(true); 
         	session.setAttribute("contexte", contexte); 
+        	session.setAttribute("id", id);
+        	
             	//DirContext contexte=LdapAuthentification.sudo_connect();
             	Utilisateur utilisateur= new Utilisateur ();
     		utilisateur = LdapAuthentification.get_attributes(id,contexte);
+    		session.setAttribute("utilisateur", utilisateur);
 		
 		
-		
-    	//GoogleAuthenticator googleAuthenticator = new GoogleAuthenticator();
-        //final GoogleAuthenticatorKey key =  googleAuthenticator.createCredentials();
-        //final String secret = key.getKey();
-        //LdapAuthentification.edit_user(contexte,id,"street", secret );
-        //String QR_PREFIX ="https://chart.googleapis.com/chart?chs=200x200&chld=M%%7C0&cht=qr&chl=";
-        //String APP_NAME="ENSTA LDAP";
-        //String URL=String.format("otpauth://totp/%s:%s?secret=%s&issuer=%s", APP_NAME, utilisateur.getIdentifiant(), secret, APP_NAME);
-        //String FINAL=QR_PREFIX+ URLEncoder.encode(URL,"UTF-8");
-        //System.out.println("<img src=\""+FINAL+"\">");
-       
+
         utilisateur.setGoogleAuth(false);
         
         	if(utilisateur.getGoogleAuth()) {
@@ -99,7 +88,7 @@ public class Authentification extends HttpServlet {
         	this.getServletContext().getRequestDispatcher( "/authentification.jsp" ).forward( request, response );
         	
 		}
-        }
+        
 		
  
 

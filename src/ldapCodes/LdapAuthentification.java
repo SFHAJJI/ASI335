@@ -114,13 +114,13 @@ public class LdapAuthentification{
 			Attributes attributes = contexte.getAttributes("uid="+uid+",ou=users,dc=example,dc=com");
 			System.out.println("Recuperation des attributs de" + uid + " : SUCCES");
 			user.setPrenom((attributes.get("cn")).toString().substring(4));
-			user.setEmail((attributes.get("description")).toString().substring(6));
+			user.setEmail((attributes.get("mail")).toString().substring(6));
 			user.setNom((attributes.get("sn")).toString().substring(4));
 			user.setQuestion((attributes.get("carLicense")).toString().substring(12));
 			user.setReponse((attributes.get("initials")).toString().substring(10));
 			user.setSecret((attributes.get("street")).toString().substring(8));
-			
 			user.setIdentifiant((attributes.get("uid")).toString().substring(4));
+			user.setPwd((attributes.get("userPassword")).toString().substring(14));
 		} catch (NamingException e) {
 			System.out.println("Recuperation des attributs de "+uid+" : ECHEC");
 			
@@ -129,7 +129,22 @@ public class LdapAuthentification{
 		}
 		return user;
 	}
-	
+	public static boolean edit_user_password(DirContext contexte, String uid, String attributeValue ) {
+		Attributes new_attrs = new BasicAttributes();
+        //Attribute new_attr= new BasicAttribute("userPassword");
+        //new_attr.add(attributeValue);
+        //new_attrs.put(new_attr);
+       new_attrs.put("userPassword",attributeValue);
+        try {
+			contexte.modifyAttributes("uid="+uid+",ou=users,dc=example,dc=com", DirContext.REPLACE_ATTRIBUTE, new_attrs);
+			return true;
+		} catch (NamingException e) {
+			System.out.println("password modification: ECHEC");
+			e.printStackTrace();
+			return false;
+		}
+                       
+	}
 
 	public static void edit_user(DirContext contexte, String uid, String attributeType, String attributeValue ) {
 		Attributes new_attrs = new BasicAttributes();

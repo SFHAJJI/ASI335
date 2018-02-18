@@ -11,10 +11,18 @@
          <link type="text/css" rel="stylesheet" href="inc/InformationUser.css" />
 
 </head>
+
 <body>
+<form method="get" action="Logout">
+ <div class="col-90">
+    <input type="submit" value="Déconnexion"  />
+     </div>
+</form>
+
+
 <div class="navbar">
-  <a href="informationUser.jsp">Acceuil</a>
-  <a href="securite.jsg">Sécurité</a>
+  <a>Acceuil</a>
+  <a href="securite.jsp">Sécurité</a>
   
 </div>
 
@@ -29,7 +37,7 @@
         <label for="fname">Nom</label>
       </div>
       <div class="col-75">
-        <input type="text" id="nom" name="nom" value= ${ utilisateur.nom }>
+        <input type="text" id="nom" name="nom" value= ${ utilisateur.nom } required>
       </div>
     </div>
     <div class="row">
@@ -37,7 +45,7 @@
         <label for="Prenom">Prenom</label>
       </div>
       <div class="col-75">
-        <input type="text" id="prenom" name="prenom" value= ${ utilisateur.prenom }>
+        <input type="text" id="prenom" name="prenom" value= ${ utilisateur.prenom }  required>
       </div>
     </div>
      <div class="row">
@@ -45,7 +53,7 @@
         <label for="lname">E-mail</label>
       </div>
       <div class="col-75">
-        <input type="text" id="email" name="email" value= ${ utilisateur.email }>
+        <input type="text" id="email" name="email" value= ${ utilisateur.email }  required>
       </div>
     </div>
     <input type="hidden" name="id" value="${utilisateur.identifiant}" />

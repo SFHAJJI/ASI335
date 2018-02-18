@@ -4,23 +4,29 @@
     <head>
         <meta charset="utf-8" />
         <title>Réinitialisation du mot de passe</title>
-        <link type="text/css" rel="stylesheet" href="inc/style.css" />
+        
+       <link type="text/css" rel="stylesheet" href="inc/InformationUser.css" />
     </head>
     <body>
+    <div class="row">
     	<%-- Affichage de la chaîne "message" transmise par la servlet --%>
-        <p class="info">${ message }</p>
+        <center><p class="info">${ message }</p></center>
         <div>
             <form method="get" action="pwdReinitialisation">
                 <fieldset>
-                    <legend>Saisissez votre identifiant</legend>
-    
+                    <legend>Saisir votre identifiant</legend>
+     				<div class="col-15">
                     <label for="identifiant">identifiant <span class="requis">*</span></label>
-                    <input type="text" id="identifiant" name="identifiant" value="" size="20" maxlength="20" />
+                    </div>
+                     <div class="col-80">
+                    <input type="text" id="identifiant" name="identifiant" value="" size="20" maxlength="20" required/>
+                    </div>
                     <br />
     
                 </fieldset>
                 <input type="submit" value="Valider"  />
             </form>
         </div>
+    </div>
     </body>
 </html>

@@ -23,13 +23,7 @@ public class PwdReinitialisation extends HttpServlet {
 	    	
 	        String message;
 	       
-	        
-	        if ( id.trim().isEmpty()  ) {
-	            message = "Vous n'avez pas rempli le champ obligatoire. ";
-	            request.setAttribute( "message", message );
-	            
-	          
-	        } else {
+	     
 	        
 	        	DirContext contexte = LdapAuthentification.sudo_connect();
 		        Utilisateur utilisateur= new Utilisateur ();
@@ -49,7 +43,7 @@ public class PwdReinitialisation extends HttpServlet {
 				}
 	        	
 	        
-	    }
+	    
 	 }
 	        
 }

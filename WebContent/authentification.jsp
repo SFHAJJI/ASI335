@@ -20,7 +20,7 @@
       <input type="text" placeholder="Entrer votre identifiant" name="identifiant" id="identifiant" required>
 
       <label for="pwd"><b>Mot de passe</b></label>
-      <input type="password" placeholder="Entrer motde passe" name="pwd" id="pwd" required>
+      <input type="password" placeholder="Entrer mot de passe" name="pwd" id="pwd" required>
 
       <button type="submit">Connecter</button>
       <!--<label>

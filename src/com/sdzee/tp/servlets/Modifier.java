@@ -32,6 +32,7 @@ public class Modifier extends HttpServlet {
 	        //    DirContext contexte = LdapAuthentification.sudo_connect();
 		        Utilisateur utilisateur= new Utilisateur ();
 				utilisateur = LdapAuthentification.get_attributes(id,contexte);
+				
 				request.setAttribute("utilisateur",utilisateur);
 	            request.setAttribute( "message", message );
 	            this.getServletContext().getRequestDispatcher( "/infomationUser.jsp" ).forward( request, response );
@@ -42,11 +43,11 @@ public class Modifier extends HttpServlet {
 	        	LdapAuthentification.edit_user(contexte,id,"cn",prenom ) ;
 	        	LdapAuthentification.edit_user(contexte,id,"sn",nom ) ;
 	        	LdapAuthentification.edit_user(contexte,id,"mail",email ) ;
-				
+	        	
 				
 		        Utilisateur utilisateur= new Utilisateur ();
 				utilisateur = LdapAuthentification.get_attributes(id,contexte);
-	           
+				session.setAttribute("utilisateur", utilisateur);
 	            request.setAttribute( "message", message );
 	            request.setAttribute( "utilisateur", utilisateur );
 	        	this.getServletContext().getRequestDispatcher( "/informationUser.jsp" ).forward( request, response );
