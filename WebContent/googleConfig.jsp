@@ -95,8 +95,8 @@
 			
 			</div>
 		</form>
-		<b>SI vous voulez associé un autre téléphone à votre compte, scanner ce QR code</b>
-		<img src="pulpitrock.jpg" >
+		<b>SI vous voulez associer un autre téléphone à votre compte, scanner ce QR code</b>
+		<img src="${utilisateur.qrCode }" >
 
 		
 	</div>

@@ -10,7 +10,7 @@
 		<div>
 			<form method="post" class="modal-content" action="authentification">
 				<div class="imgcontainer">
-					<img src="image/img_avatar.png" alt="Avatar" class="avatar">
+					<img src="image/img_avatar.png" alt="Avatar" style="width:150px;height:150px;" class="avatar">
 				</div>
 				<div class="container">
 					<label for="identifiant"><b>Identifiant</b></label> <input

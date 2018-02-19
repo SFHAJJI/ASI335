@@ -10,8 +10,11 @@ public class Utilisateur {
     private String question;
     private String reponse;
     private String email;
+    private String qrCode;
     private String googleAuth;
     private String secret;
+   
+    
     public void setIdentifiant( String identifiant ) {
         this.identifiant = identifiant;
     }
@@ -82,4 +85,13 @@ public class Utilisateur {
     public String getGoogleAuth() {
         return googleAuth;
     }
+    
+    public void setQrCode( String link ) {
+        this.qrCode = link;
+    }
+
+    public String getQrCode() {
+        return qrCode;
+    }
+    
 }

@@ -6,6 +6,10 @@ package ldapCodes;
 
 import java.util.Hashtable;
 import com.sdzee.tp.beans.Utilisateur;
+import com.warrenstrange.googleauth.GoogleAuthenticator;
+import com.warrenstrange.googleauth.GoogleAuthenticatorException;
+import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
+
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.naming.directory.Attributes;
@@ -14,6 +18,8 @@ import javax.naming.directory.BasicAttribute;
 import javax.naming.directory.BasicAttributes;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
+
+import org.apache.catalina.util.URLEncoder;
 
  
 public class LdapAuthentification{
@@ -121,11 +127,18 @@ public class LdapAuthentification{
 			user.setSecret((attributes.get("street")).toString().substring(8));
 			user.setIdentifiant((attributes.get("uid")).toString().substring(4));
 			user.setGoogleAuth((attributes.get("departmentNumber")).toString().substring(18));
-			System.out.println("yahoo"+(attributes.get("departmentNumber")).toString().substring(18));
 			Attribute userPassword = attributes.get("userPassword");
 		 	String pwd = new String((byte[]) userPassword.get());
-		 	System.out.println(pwd);
 		 	user.setPwd(pwd);
+		 //	GoogleAuthenticator googleAuthenticator = new GoogleAuthenticator();
+	       // final GoogleAuthenticatorKey key =googleAuthenticator.createCredentials();
+	      //  final String secret = key.getKey();
+		 	String QR_PREFIX = "https://chart.googleapis.com/chart?chs=200x200&chld=M%%7C0&cht=qr&chl=";
+		    String APP_NAME = "ENSTA LDAP";
+		    String url =String.format("otpauth://totp/%s:%s?secret=%s&issuer=%s", APP_NAME, (attributes.get("mail")).toString().substring(6), (attributes.get("street")).toString().substring(8), APP_NAME);
+		    URLEncoder encoder = new URLEncoder();
+		    String qrCode = QR_PREFIX + encoder.encode(url, "UTF-8");
+		   	user.setQrCode(qrCode);
 		} catch (NamingException e) {
 			System.out.println("Recuperation des attributs de "+uid+" : ECHEC");
 			
