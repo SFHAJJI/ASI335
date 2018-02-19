@@ -1,43 +1,46 @@
 package com.sdzee.tp.servlets;
-import java.io.IOException;
 
-import javax.naming.NamingException;
-import javax.naming.directory.DirContext;
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sdzee.tp.beans.Utilisateur;
+import org.springframework.security.authentication.encoding.LdapShaPasswordEncoder;
+
 import ldapCodes.LdapAuthentification;
+
+
 public class NouveauPwd extends HttpServlet {
-	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        /*
-         * Récupération des données saisies, envoyées en tant que paramètres de
-         * la requête GET générée à la validation du formulaire d'authentification
-         */
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * Récupération des données saisies, envoyées en tant que paramètres de la
+		 * requête GET générée à la validation du formulaire d'authentification
+		 */
+
+		String id = request.getParameter("id");
+		String newpwd = request.getParameter("newpwd");
+		String mpdduplicate = request.getParameter("mpdduplicate");
+		String message;
+
 		
-    	String id = request.getParameter( "id" );
-        String newpwd = request.getParameter( "newpwd" );
-        String mpdduplicate = request.getParameter( "mpdduplicate" );
-        String message;
-       
-        if(LdapAuthentification.edit_user_password(LdapAuthentification.sudo_connect(),id,newpwd )) {
-        	 message = "Mise à jour réussite du mot  de passe ";
-        	  request.setAttribute( "message", message );
-              this.getServletContext().getRequestDispatcher( "/authentification.jsp" ).forward( request, response );
+		 //essayer de modifier le mot de passe
+		String msg= LdapAuthentification.edit_user_password(LdapAuthentification.sudo_connect(), id, newpwd);
+	
+		if (msg=="") { 
+			message = "Mise à jour du mot  de passe réussie";
+			request.setAttribute("message", message);
+			this.getServletContext().getRequestDispatcher("/authentification.jsp").forward(request, response);
 
-        }else {
-        	
-        	message = "ECHEC : mot de passe non modifié ";
-	      
-        	request.setAttribute( "id", id );
-			request.setAttribute( "message", message );
-            this.getServletContext().getRequestDispatcher( "/authentification.jsp" ).forward( request, response );
-    	
-        }
-      
+		} else {
+			request.setAttribute("id", id);
+			message = "Mot de passe non modifié:  ";
+			request.setAttribute("id", id);
+			request.setAttribute("message", message+msg+"Veuillez réessayer");
+			this.getServletContext().getRequestDispatcher("/nouveauPwd.jsp").forward(request, response);
 
-    }
+		}
+
+	}
 
 }

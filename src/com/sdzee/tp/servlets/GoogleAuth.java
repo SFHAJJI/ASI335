@@ -21,33 +21,22 @@ public class GoogleAuth extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 		String message;
 		String code=request.getParameter( "code" );
-	
 		String id=request.getParameter( "id" );
-
 		HttpSession session = request.getSession(); // session en cours 
 	    DirContext contexte = (DirContext)session.getAttribute("contexte"); 
-	    
-	    Utilisateur utilisateur= new Utilisateur ();
-		utilisateur = LdapAuthentification.get_attributes(id,contexte);
+	    Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");		
 		
-		
-		  
 		Totp t=new Totp(utilisateur.getSecret());
-	        
-          
         System.out.println(t.verify(code));
         
 		if(t.verify(code)) {
 			message="Authentification réussite!";
 			request.setAttribute( "message", message );
 			request.setAttribute( "utilisateur", utilisateur );
-			
 			this.getServletContext().getRequestDispatcher( "/informationUser.jsp" ).forward( request, response );
-			
-			 
-			
+
 		}else {
-			message="Code erroné!";
+			message="Code erroné! veuillez réessayer";
 			request.setAttribute( "message", message );
 			request.setAttribute( "utilisateur", utilisateur );
 			this.getServletContext().getRequestDispatcher( "/saisieQR.jsp" ).forward( request, response );

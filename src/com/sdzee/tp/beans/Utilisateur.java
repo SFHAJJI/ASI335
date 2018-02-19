@@ -10,7 +10,7 @@ public class Utilisateur {
     private String question;
     private String reponse;
     private String email;
-    private boolean googleAuth;
+    private String googleAuth;
     private String secret;
     public void setIdentifiant( String identifiant ) {
         this.identifiant = identifiant;
@@ -75,11 +75,11 @@ public class Utilisateur {
         return email;
     }
     
-    public void setGoogleAuth( boolean googleAuth ) {
+    public void setGoogleAuth( String googleAuth ) {
         this.googleAuth = googleAuth;
     }
 
-    public boolean getGoogleAuth() {
+    public String getGoogleAuth() {
         return googleAuth;
     }
 }

@@ -120,6 +120,8 @@ public class LdapAuthentification{
 			user.setReponse((attributes.get("initials")).toString().substring(10));
 			user.setSecret((attributes.get("street")).toString().substring(8));
 			user.setIdentifiant((attributes.get("uid")).toString().substring(4));
+			user.setGoogleAuth((attributes.get("departmentNumber")).toString().substring(18));
+			System.out.println("yahoo"+(attributes.get("departmentNumber")).toString().substring(18));
 			Attribute userPassword = attributes.get("userPassword");
 		 	String pwd = new String((byte[]) userPassword.get());
 		 	System.out.println(pwd);
@@ -132,7 +134,7 @@ public class LdapAuthentification{
 		}
 		return user;
 	}
-	public static boolean edit_user_password(DirContext contexte, String uid, String attributeValue ) {
+	public static String edit_user_password(DirContext contexte, String uid, String attributeValue ) {
 		Attributes new_attrs = new BasicAttributes();
         //Attribute new_attr= new BasicAttribute("userPassword");
         //new_attr.add(attributeValue);
@@ -140,11 +142,13 @@ public class LdapAuthentification{
        new_attrs.put("userPassword",attributeValue);
         try {
 			contexte.modifyAttributes("uid="+uid+",ou=users,dc=example,dc=com", DirContext.REPLACE_ATTRIBUTE, new_attrs);
-			return true;
+			return "";
 		} catch (NamingException e) {
 			System.out.println("password modification: ECHEC");
 			e.printStackTrace();
-			return false;
+			int index = e.getExplanation().lastIndexOf("\n: ");
+			String message ="Modification non réussie! ["+e.getExplanation().substring(index).substring(2);
+			return message;
 		}
                        
 	}
