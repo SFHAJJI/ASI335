@@ -14,7 +14,7 @@ public class Authentification extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*
 		 * Récupération des données saisies, envoyées en tant que paramètres de la
-		 * requête GET générée à la validation du formulaire d'authentification
+		 * requête POST générée à la validation du formulaire d'authentification
 		 */
 		String id = request.getParameter("identifiant");
 		String motDePasse = request.getParameter("pwd");
@@ -31,23 +31,24 @@ public class Authentification extends HttpServlet {
 			session.setAttribute("id", id);
 			session.setAttribute("utilisateur", utilisateur);
 			//Etape de google authentificator
-		//	utilisateur.setGoogleAuth(false);
 			if (utilisateur.getGoogleAuth().equals("activé")) {
 				/* Ajout du message à l'objet requête */
 				message = "Deuxième étape de l'authentification!";
 				request.setAttribute("message", message);
 				/* Ajout de l'utilisateur à l'objet requête */
 				request.setAttribute("utilisateur", utilisateur);
+				//envoie des objets utilisateur et message à la jsp de saisie de code 
 				this.getServletContext().getRequestDispatcher("/saisieQR.jsp").forward(request, response);
 			} else {
 				/* Ajout du message à l'objet requête */
 				message = "Authentification réussie !";
 				request.setAttribute("message", message);
-
 				request.setAttribute("utilisateur", utilisateur);
+				//envoie des objets message et utilisateur à la jsp pour afficher les infos générales de ce dernier
 				this.getServletContext().getRequestDispatcher("/informationUser.jsp").forward(request, response);
 			}
-		} catch (java.lang.NullPointerException e) { //si la connexion au serveur ldap apr l'utilisateur est échouée
+		} catch (java.lang.NullPointerException e) { 
+			//si la connexion au serveur ldap apr l'utilisateur est échouée
 			message = "Authentification échouée: identifiant et/ou mot de passe incorrect ! Veuillez réessayer";
 			/* Ajout du message à l'objet requête */
 			request.setAttribute("message", message);

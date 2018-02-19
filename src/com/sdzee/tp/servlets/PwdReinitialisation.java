@@ -15,13 +15,10 @@ import ldapCodes.LdapAuthentification;
 public class PwdReinitialisation extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		 * Récupération de l'identifiant
-		 */
+		//Récupération de l'identifiant
 		String id = request.getParameter("identifiant");
 
 		String message;
-
 		DirContext contexte = LdapAuthentification.sudo_connect();
 		Utilisateur utilisateur = new Utilisateur();
 		utilisateur = LdapAuthentification.get_attributes(id, contexte);

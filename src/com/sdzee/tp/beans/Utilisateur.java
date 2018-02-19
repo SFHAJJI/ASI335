@@ -3,16 +3,16 @@ package com.sdzee.tp.beans;
 
 public class Utilisateur {
 	/* Propriétés du bean */
-	private String identifiant;
-    private String nom;
-    private String prenom;
-    private String pwd;
-    private String question;
-    private String reponse;
-    private String email;
-    private String qrCode;
-    private String googleAuth;
-    private String secret;
+	private String identifiant; //il est référencé dans l'LDAP par l'attribut "uid"
+    private String nom; //il est référencé dans l'LDAP par l'attribut "sn"
+    private String prenom; //il est référencé dans l'LDAP par l'attribut "cn"
+    private String pwd; //il est référencé dans l'LDAP par l'attribut "userPassword"
+    private String question; //il est référencé dans l'LDAP par l'attribut "carLicense"
+    private String reponse; //il est référencé dans l'LDAP par l'attribut "initials"
+    private String email; //il est référencé dans l'LDAP par l'attribut "mail"
+    private String qrCode; //il est référencé dans l'LDAP par l'attribut "street"
+    private String googleAuth; //il est référencé dans l'LDAP par l'attribut "departmentNumber"
+    private String secret; //il est référencé dans l'LDAP par l'attribut ""
    
     
     public void setIdentifiant( String identifiant ) {

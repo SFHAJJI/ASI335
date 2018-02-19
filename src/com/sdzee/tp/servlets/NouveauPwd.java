@@ -13,11 +13,8 @@ import ldapCodes.LdapAuthentification;
 
 public class NouveauPwd extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		 * Récupération des données saisies, envoyées en tant que paramètres de la
-		 * requête GET générée à la validation du formulaire d'authentification
-		 */
 
+		//récupération des paramètres  : identifiant, nouveau mot de passe
 		String id = request.getParameter("id");
 		String newpwd = request.getParameter("newpwd");
 		String mpdduplicate = request.getParameter("mpdduplicate");
@@ -27,13 +24,14 @@ public class NouveauPwd extends HttpServlet {
 		 //essayer de modifier le mot de passe
 		String msg= LdapAuthentification.edit_user_password(LdapAuthentification.sudo_connect(), id, newpwd);
 	
-		if (msg=="") { 
+		if (msg=="") {
+			//modification réussite
 			message = "Mise à jour du mot  de passe réussie";
 			request.setAttribute("message", message);
 			this.getServletContext().getRequestDispatcher("/authentification.jsp").forward(request, response);
 
 		} else {
-			request.setAttribute("id", id);
+			//modification échouée
 			message = "Mot de passe non modifié:  ";
 			request.setAttribute("id", id);
 			request.setAttribute("message", message+msg+"Veuillez réessayer");

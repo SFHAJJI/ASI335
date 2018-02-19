@@ -25,7 +25,7 @@ public class changerQuRe extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Récupérer les informations envoyées par la requete
+		// Récupérer les informations envoyées par la requete : mot de passe actuelle, nouvelles question et réponse secrètes
 		String Actuel = request.getParameter("Actuel");
 		String Question = request.getParameter("Question");
 		String Reponse = request.getParameter("Reponse");
@@ -45,10 +45,11 @@ public class changerQuRe extends HttpServlet {
 				// Changer la question et réponse de l'utilisateur dans LDAP
 				LdapAuthentification.edit_user(contexte, id, "initials", Reponse);
 				LdapAuthentification.edit_user(contexte, id, "carLicense", Question);
+				
 				// Mise à jour de la variable utilisateur
 				utilisateur = LdapAuthentification.get_attributes(id, contexte);
+				
 				// Transformer les informations dans la requetes
-				request.setAttribute("utilisateur", utilisateur);
 				request.setAttribute("utilisateur", utilisateur);
 				message = "Question et réponse modifiées";
 				request.setAttribute("message", message);
@@ -62,7 +63,6 @@ public class changerQuRe extends HttpServlet {
 		else {
 			message = "Votre mot de passe est incorrect. Veuillez réessayer";
 			request.setAttribute("message", message);
-			//request.setAttribute("utilisateur", utilisateur);
 			this.getServletContext().getRequestDispatcher("/securite.jsp").forward(request, response);
 		}
 

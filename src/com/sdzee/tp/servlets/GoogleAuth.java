@@ -20,9 +20,10 @@ import ldapCodes.LdapAuthentification;
 public class GoogleAuth extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 		String message;
+		//recupération du code saisie par l'utilisateur
 		String code=request.getParameter( "code" );
-		String id=request.getParameter( "id" );
-		HttpSession session = request.getSession(); // session en cours 
+		//recupération de l'utilisateur enregistré dans le paramètre session
+		HttpSession session = request.getSession(); 
 	    DirContext contexte = (DirContext)session.getAttribute("contexte"); 
 	    Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");		
 		
@@ -30,12 +31,14 @@ public class GoogleAuth extends HttpServlet {
         System.out.println(t.verify(code));
         
 		if(t.verify(code)) {
+			//si le code saisie est correcte
 			message="Authentification réussite!";
 			request.setAttribute( "message", message );
 			request.setAttribute( "utilisateur", utilisateur );
 			this.getServletContext().getRequestDispatcher( "/informationUser.jsp" ).forward( request, response );
 
 		}else {
+			//si le code saisie est correcte
 			message="Code erroné! veuillez réessayer";
 			request.setAttribute( "message", message );
 			request.setAttribute( "utilisateur", utilisateur );

@@ -14,6 +14,7 @@ import com.sdzee.tp.beans.Utilisateur;
 import ldapCodes.LdapAuthentification;
 
 @WebServlet("/ActivateDesactivateGoogle")
+
 public class ActivateDesactivateGoogle extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Récupérer le contexte de l'utilisateur
@@ -21,7 +22,7 @@ public class ActivateDesactivateGoogle extends HttpServlet {
 		DirContext contexte = (DirContext) session.getAttribute("contexte");
 		Utilisateur utilisateur =(Utilisateur) session.getAttribute("utilisateur");
 		String message; 
-		//Changer les informations dans le serveur LDAP
+		//Changer le paramères google authentification dans le serveur LDAP
 		String id = (String) session.getAttribute("id");
 
 		if (utilisateur.getGoogleAuth().equals("désactivé")) {
@@ -33,7 +34,6 @@ public class ActivateDesactivateGoogle extends HttpServlet {
 		}
 		
 		// Changer les information dans la variable "utilisateur"
-
 		utilisateur = LdapAuthentification.get_attributes(utilisateur.getIdentifiant(), contexte);
 		request.setAttribute("message", message);
 

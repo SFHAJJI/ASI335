@@ -14,20 +14,24 @@ import ldapCodes.LdapAuthentification;
 
 public class VerifReponse extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//recupération des paramètres suivantes : réponse saisie, réponse enregistré et l'identifiant
 		String reponseSaisie = request.getParameter("reponseSaisie");
 		String reponseI = request.getParameter("reponseI");
 		String id = request.getParameter("id");
 
 		boolean test = reponseI.equals(reponseSaisie);
 		if (test) {
+			//réponse saisie correcte et envoyé l'identifiant au formulaire de réinitialisation du mdp
 			String message = "Veuillez saisir votre nouveau mot de passe";
 			request.setAttribute("message", message);
 			request.setAttribute("id", id);
 			this.getServletContext().getRequestDispatcher("/nouveauPwd.jsp").forward(request, response);
 
 		} else {
-			
+			//réponse saisie incorrecte
 			DirContext contexte = LdapAuthentification.sudo_connect();
+			
+			//reconstruction del'utilisateur et l'envoyé au formulaire de saisie réponse secrète
 			Utilisateur utilisateur = new Utilisateur();
 			utilisateur = LdapAuthentification.get_attributes(id, contexte);
 			String message = "Mauvaise réponse, veuillez réessayer";
